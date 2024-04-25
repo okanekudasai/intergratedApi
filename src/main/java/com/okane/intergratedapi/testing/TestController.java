@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class TestController {
     @GetMapping("/hello")
     String getTest() {
-        return "Hello, this is a test response!!!!";
+        return "hello intergrated";
     }
 }

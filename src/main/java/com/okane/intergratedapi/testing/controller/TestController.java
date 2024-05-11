@@ -45,4 +45,14 @@ public class TestController {
         return sb.toString();
     }
 
+    @GetMapping("/true")
+    boolean getTrue() {
+        return true;
+    }
+
+    @GetMapping("/false")
+    boolean getFalse() {
+        return false;
+    }
+
 }

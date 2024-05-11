@@ -46,12 +46,14 @@ public class TestController {
     }
 
     @GetMapping("/true")
-    boolean getTrue() {
+    boolean getTrue() throws InterruptedException {
+        Thread.sleep(2000);
         return true;
     }
 
     @GetMapping("/false")
-    boolean getFalse() {
+    boolean getFalse() throws InterruptedException {
+        Thread.sleep(2000);
         return false;
     }
 

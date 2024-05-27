@@ -149,9 +149,7 @@ public class WebhookController {
     }
 
     @GetMapping("/makeNewLine")
-    private String makeNewLine() {
-
-        String problem = "문제이름44444";
+    private String makeNewLine(String problem) {
 
         LocalDate today = LocalDate.now();
         String formattedDate = today.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
@@ -209,7 +207,7 @@ public class WebhookController {
             }
         }
         System.out.println("못찾음");
-        return makeNewLine();
+        return makeNewLine(problem);
 
         //가져온 열에서 problem과 같은 문제가 있는지 확인
         //있으면 그 열의 id 반환

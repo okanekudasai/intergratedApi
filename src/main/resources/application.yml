@@ -14,3 +14,7 @@ spring:
       ddl-auto: create
     show-sql: true
     open-in-view: false
+
+github:
+  webhook:
+    secret: goranisamjichang

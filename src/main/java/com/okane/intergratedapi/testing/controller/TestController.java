@@ -4,8 +4,14 @@ import com.okane.intergratedapi.testing.UserRepository;
 import com.okane.intergratedapi.testing.dto.User;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.codec.binary.Hex;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
 import java.util.List;
 
 @RestController
@@ -25,7 +31,6 @@ public class TestController {
 
     @GetMapping("/hello")
     String getTest() {
-        System.out.println("웹훅테스트!");
         return "hello intergrated!!!!";
     }
 

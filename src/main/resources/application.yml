@@ -18,3 +18,7 @@ spring:
 github:
   webhook:
     secret: goranisamjichang
+
+notion:
+  database_id: c95a44c239514d7f92adc66605f07e4d
+  apiKey: secret_ivKjOTQbvbLVmZkqGhA2dokCANUwpuyVPxmuqDcmqYI

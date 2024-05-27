@@ -103,6 +103,10 @@ public class WebhookController {
         System.out.println(sb);
 
         System.out.println(authorName);
+        if (problem_name.endsWith(".md")) {
+            System.out.println("md파일 스킵");
+            return ResponseEntity.ok("Skip md");
+        }
         updateUrl(authorName, url + "/blob/master/" + edited, problem_name);
 
         return ResponseEntity.ok("Success");

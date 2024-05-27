@@ -55,6 +55,8 @@ public class WebhookController {
         return "hello webhook!";
     }
 
+    String Notion_Version = "2022-06-28";
+
     /**
      * 오후 4시가 되면 자동으로 작동하는 코드
      */
@@ -165,11 +167,11 @@ public class WebhookController {
 
     @GetMapping("/notionGetAll")
     private void notionGetAll() {
-        String reqURL = "https://api.notion.com/v1/databases/c95a44c239514d7f92adc66605f07e4d";
+        String reqURL = "https://api.notion.com/v1/databases/" + database_id;
         WebClient webClient = WebClient.builder()
                 .baseUrl(reqURL)
-                .defaultHeader("Authorization", "Bearer secret_ivKjOTQbvbLVmZkqGhA2dokCANUwpuyVPxmuqDcmqYI")
-                .defaultHeader("Notion-Version", "2022-06-28")
+                .defaultHeader("Authorization", "Bearer " + apiKey)
+                .defaultHeader("Notion-Version", Notion_Version)
                 .build();
         Mono<String> responseMono = webClient.get()
                 .retrieve()
@@ -201,7 +203,7 @@ public class WebhookController {
                 .baseUrl(reqURL)
                 .defaultHeader("Authorization", "Bearer " + apiKey)
                 .defaultHeader("Content-Type", "application/json")
-                .defaultHeader("Notion-Version", "2022-06-28")
+                .defaultHeader("Notion-Version", Notion_Version)
                 .build();
         String response = webClient.post()
                         .bodyValue(body)
@@ -222,7 +224,7 @@ public class WebhookController {
         WebClient webClient = WebClient.builder()
                 .baseUrl(reqURL)
                 .defaultHeader("Authorization", "Bearer " + apiKey)
-                .defaultHeader("Notion-Version", "2022-06-28")
+                .defaultHeader("Notion-Version", Notion_Version)
                 .build();
         String response = webClient.post()
                 .retrieve()
@@ -272,7 +274,7 @@ public class WebhookController {
                 .baseUrl(reqURL)
                 .defaultHeader("Authorization", "Bearer " + apiKey)
                 .defaultHeader("Content-Type", "application/json")
-                .defaultHeader("Notion-Version", "2022-06-28")
+                .defaultHeader("Notion-Version", Notion_Version)
                 .build();
         String response = webClient.patch()
                 .bodyValue(body)

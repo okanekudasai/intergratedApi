@@ -24,29 +24,29 @@ public class WebhookController {
     String hello() {
         return "hello webhook!";
     }
-    @PostMapping("/test")
-    public ResponseEntity<String> handleWebhook(@RequestBody Map<String, Object> payload) {
-        // 여기서 특정 메서드를 실행합니다.
-        runSpecificMethod();
-        return ResponseEntity.ok("Webhook received and processed");
-    }
-
-    public void runSpecificMethod() {
-        // 실행하고자 하는 특정 메서드 로직을 여기에 작성합니다.
-        System.out.println("Specific method executed!");
-    }
 //    @PostMapping("/test")
-//    public ResponseEntity<String> handleGitHubWebhook(
-//            @RequestBody String payload,
-//            @RequestHeader("X-Hub-Signature-256") String signature) {
-//        if (!isValidSignature(payload, signature)) {
-//            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid signature");
-//        }
-//        // GitHub Webhook에서 보내는 페이로드 처리
-//        System.out.println("Received payload: " + payload);
-//        // 원하는 비즈니스 로직을 여기에 추가합니다.
-//        return ResponseEntity.ok("Success");
+//    public ResponseEntity<String> handleWebhook(@RequestBody Map<String, Object> payload) {
+//        // 여기서 특정 메서드를 실행합니다.
+//        runSpecificMethod();
+//        return ResponseEntity.ok("Webhook received and processed");
 //    }
+//
+//    public void runSpecificMethod() {
+//        // 실행하고자 하는 특정 메서드 로직을 여기에 작성합니다.
+//        System.out.println("Specific method executed!");
+//    }
+    @PostMapping("/test")
+    public ResponseEntity<String> handleGitHubWebhook(
+            @RequestBody String payload,
+            @RequestHeader("X-Hub-Signature-256") String signature) {
+        if (!isValidSignature(payload, signature)) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid signature");
+        }
+        // GitHub Webhook에서 보내는 페이로드 처리
+        System.out.println("Received payload: " + payload);
+        // 원하는 비즈니스 로직을 여기에 추가합니다.
+        return ResponseEntity.ok("Success");
+    }
 
     private boolean isValidSignature(String payload, String signature) {
         try {

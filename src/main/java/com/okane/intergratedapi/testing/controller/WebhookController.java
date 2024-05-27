@@ -3,6 +3,7 @@ package com.okane.intergratedapi.testing.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
@@ -56,15 +57,15 @@ public class WebhookController {
         JsonElement author = commit.getAsJsonObject().get("author").getAsJsonObject();
         String authorName = author.getAsJsonObject().get("name").getAsString();
         String authorUserName = author.getAsJsonObject().get("username").getAsString();
-        JsonArray added = commit.getAsJsonObject().get("added").getAsJsonArray();
-        String problem = added.get(0).getAsString();
+        JsonObject added = commit.getAsJsonObject().get("added").getAsJsonObject();
+        String problem = added.getAsString();
         StringBuilder sb = new StringBuilder();
         sb.append("URL : ").append(blobUrl).append("\n");
         sb.append("저자이름 : ").append(authorName).append("\n");
         sb.append("닉네임 : ").append(authorUserName).append("\n");
         sb.append("문제 : ").append(problem).append("\n");
-//        System.out.println(sb);
         System.out.println(payload);
+        System.out.println(sb);
         // 원하는 비즈니스 로직을 여기에 추가합니다.
         return ResponseEntity.ok("Success");
     }

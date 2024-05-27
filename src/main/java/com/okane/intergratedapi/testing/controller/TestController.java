@@ -25,6 +25,7 @@ public class TestController {
 
     @GetMapping("/hello")
     String getTest() {
+        System.out.println("웹훅테스트!");
         return "hello intergrated!!!!";
     }
 

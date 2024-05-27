@@ -63,7 +63,8 @@ public class WebhookController {
         sb.append("저자이름 : ").append(authorName).append("\n");
         sb.append("닉네임 : ").append(authorUserName).append("\n");
         sb.append("문제 : ").append(problem).append("\n");
-        System.out.println(sb);
+//        System.out.println(sb);
+        System.out.println(payload);
         // 원하는 비즈니스 로직을 여기에 추가합니다.
         return ResponseEntity.ok("Success");
     }

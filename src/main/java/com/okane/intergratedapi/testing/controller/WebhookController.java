@@ -92,15 +92,15 @@ public class WebhookController {
             edited = added.get(0).getAsString();
         }
         String problem_name = edited.split("/")[0];
-        StringBuilder sb = new StringBuilder();
-        sb.append("URL : ").append(url).append("\n");
-        sb.append("저자이름 : ").append(authorName).append("\n");
-        sb.append("닉네임 : ").append(authorUserName).append("\n");
-        sb.append("문제경로 : ").append(edited).append("\n");
-        sb.append("문제이름 : ").append(problem_name).append("\n");
-        sb.append("최종url : ").append(url + "/blob/master/" + edited);
+//        StringBuilder sb = new StringBuilder();
+//        sb.append("URL : ").append(url).append("\n");
+//        sb.append("저자이름 : ").append(authorName).append("\n");
+//        sb.append("닉네임 : ").append(authorUserName).append("\n");
+//        sb.append("문제경로 : ").append(edited).append("\n");
+//        sb.append("문제이름 : ").append(problem_name).append("\n");
+//        sb.append("최종url : ").append(url + "/blob/master/" + edited);
         //        System.out.println(payload);
-        System.out.println(sb);
+//        System.out.println(sb);
 
         System.out.println(authorName);
         if (edited.endsWith(".md")) {
@@ -157,7 +157,7 @@ public class WebhookController {
 
         LocalDate today = LocalDate.now();
         String formattedDate = today.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        System.out.println("오늘 날짜: " + formattedDate);
+//        System.out.println("오늘 날짜: " + formattedDate);
 
         String reqURL = "https://api.notion.com/v1/pages";
         String body = "{\"parent\":{\"type\":\"database_id\",\"database_id\":\"" + database_id + "\"},\"properties\":{\"날짜\":{\"date\":{\"start\":\"" + formattedDate + "\"}},\"문제\":{\"title\":[{\"text\":{\"content\":\"" + problem + "\",\"link\":null}}]},\"이동하\":{\"url\":\" \"},\"박아멘\":{\"url\":\" \"}}}";
@@ -225,7 +225,7 @@ public class WebhookController {
 
         String target_id = notionQuery(problem_name);
         if (target_id.charAt(0) == '"') target_id = target_id.substring(1, target_id.length() - 1);
-        System.out.println(target_id);
+//        System.out.println(target_id);
         String reqURL = "https://api.notion.com/v1/pages/" + target_id;
         String body = "{\"properties\":{\"" + target_name + "\":{\"url\":\"" + target_url + "\"}}}";
 

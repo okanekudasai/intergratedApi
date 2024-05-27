@@ -19,6 +19,10 @@ public class WebhookController {
     @Value("${github.webhook.secret}")
     String GITHUB_SECRET;
 
+    @GetMapping("/hello")
+    String hello() {
+        return "hello webhook!";
+    }
     @PostMapping("/test")
     public ResponseEntity<String> handleGitHubWebhook(
             @RequestBody String payload,

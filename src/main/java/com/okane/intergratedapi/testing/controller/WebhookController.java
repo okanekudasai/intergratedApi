@@ -57,8 +57,9 @@ public class WebhookController {
         JsonElement author = commit.getAsJsonObject().get("author").getAsJsonObject();
         String authorName = author.getAsJsonObject().get("name").getAsString();
         String authorUserName = author.getAsJsonObject().get("username").getAsString();
-        JsonArray added = commit.getAsJsonObject().get("added").getAsJsonArray();
-        String problem = added.get(0).getAsString();
+//        JsonArray added = commit.getAsJsonObject().get("added").getAsJsonArray();
+//        String problem = added.get(0).getAsString();
+        String problem = commit.getAsJsonObject().get("added").getAsJsonArray().get(0).getAsString();
         StringBuilder sb = new StringBuilder();
         sb.append("URL : ").append(url).append("\n");
         sb.append("저자이름 : ").append(authorName).append("\n");

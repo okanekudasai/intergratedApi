@@ -27,13 +27,15 @@ public class WebhookController {
     public ResponseEntity<String> handleGitHubWebhook(
             @RequestBody String payload,
             @RequestHeader("X-Hub-Signature-256") String signature) {
-        if (!isValidSignature(payload, signature)) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid signature");
-        }
-        // GitHub Webhook에서 보내는 페이로드 처리
-        System.out.println("Received payload: " + payload);
-        // 원하는 비즈니스 로직을 여기에 추가합니다.
+        System.out.println("success!!!");
         return ResponseEntity.ok("Success");
+//        if (!isValidSignature(payload, signature)) {
+//            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid signature");
+//        }
+//        // GitHub Webhook에서 보내는 페이로드 처리
+//        System.out.println("Received payload: " + payload);
+//        // 원하는 비즈니스 로직을 여기에 추가합니다.
+//        return ResponseEntity.ok("Success");
     }
 
     private boolean isValidSignature(String payload, String signature) {

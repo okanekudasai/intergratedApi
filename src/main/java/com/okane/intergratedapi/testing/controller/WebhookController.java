@@ -52,15 +52,15 @@ public class WebhookController {
         // GitHub Webhook에서 보내는 페이로드 처리
         JsonElement element = JsonParser.parseString(payload);
         JsonElement repository = element.getAsJsonObject().get("repository").getAsJsonObject();
-        String blobUrl = repository.getAsJsonObject().get("blobs_url").getAsString();
+        String url = repository.getAsJsonObject().get("url").getAsString();
         JsonElement commit = element.getAsJsonObject().get("head_commit").getAsJsonObject();
         JsonElement author = commit.getAsJsonObject().get("author").getAsJsonObject();
         String authorName = author.getAsJsonObject().get("name").getAsString();
         String authorUserName = author.getAsJsonObject().get("username").getAsString();
-        JsonObject added = commit.getAsJsonObject().get("added").getAsJsonObject();
-        String problem = added.getAsString();
+        String added = commit.getAsJsonObject().get("added").getAsString();
+        String problem = added;
         StringBuilder sb = new StringBuilder();
-        sb.append("URL : ").append(blobUrl).append("\n");
+        sb.append("URL : ").append(url).append("\n");
         sb.append("저자이름 : ").append(authorName).append("\n");
         sb.append("닉네임 : ").append(authorUserName).append("\n");
         sb.append("문제 : ").append(problem).append("\n");

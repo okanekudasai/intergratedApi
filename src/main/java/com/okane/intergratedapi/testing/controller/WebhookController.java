@@ -61,21 +61,27 @@ public class WebhookController {
 //        JsonArray added = commit.getAsJsonObject().get("added").getAsJsonArray();
 //        String problem = added.get(0).getAsString();
         JsonArray added = commit.getAsJsonObject().get("added").getAsJsonArray();
+        String edited = null;
         if (added.isEmpty()) {
-            System.out.println(payload);
-            return ResponseEntity.ok("edited");
+            JsonArray modified = commit.getAsJsonObject().get("modified").getAsJsonArray();
+            if (modified.isEmpty()) {
+                System.out.println(payload);
+                return ResponseEntity.ok("edited");
+            } else {
+                edited = modified.get(0).getAsString();
+            }
         } else {
-            String problem = added.get(0).getAsString();
-            StringBuilder sb = new StringBuilder();
-            sb.append("URL : ").append(url).append("\n");
-            sb.append("저자이름 : ").append(authorName).append("\n");
-            sb.append("닉네임 : ").append(authorUserName).append("\n");
-            sb.append("문제 : ").append(problem).append("\n");
-            //        System.out.println(payload);
-            System.out.println(sb);
-            // 원하는 비즈니스 로직을 여기에 추가합니다.
-            return ResponseEntity.ok("Success");
+            edited = added.get(0).getAsString();
         }
+        StringBuilder sb = new StringBuilder();
+        sb.append("URL : ").append(url).append("\n");
+        sb.append("저자이름 : ").append(authorName).append("\n");
+        sb.append("닉네임 : ").append(authorUserName).append("\n");
+        sb.append("문제 : ").append(edited).append("\n");
+        //        System.out.println(payload);
+        System.out.println(sb);
+        // 원하는 비즈니스 로직을 여기에 추가합니다.
+        return ResponseEntity.ok("Success");
     }
 
     private boolean isValidSignature(String payload, String signature) {

@@ -63,6 +63,7 @@ public class WebhookController {
         JsonArray added = commit.getAsJsonObject().get("added").getAsJsonArray();
         if (added.isEmpty()) {
             System.out.println(payload);
+            return ResponseEntity.ok("edited");
         } else {
             String problem = added.get(0).getAsString();
             StringBuilder sb = new StringBuilder();

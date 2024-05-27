@@ -126,15 +126,15 @@ public class WebhookController {
             edited = added.get(0).getAsString();
         }
         String problem_name = edited.split("/")[0];
-//        StringBuilder sb = new StringBuilder();
+        StringBuilder sb = new StringBuilder();
 //        sb.append("URL : ").append(url).append("\n");
-//        sb.append("저자이름 : ").append(authorName).append("\n");
+        sb.append("저자이름 : ").append(authorName).append("\n");
 //        sb.append("닉네임 : ").append(authorUserName).append("\n");
 //        sb.append("문제경로 : ").append(edited).append("\n");
 //        sb.append("문제이름 : ").append(problem_name).append("\n");
 //        sb.append("최종url : ").append(url + "/blob/master/" + edited);
         //        System.out.println(payload);
-//        System.out.println(sb);
+        System.out.println(sb);
 
 //        System.out.println(authorName);
         if (edited.endsWith(".md")) {

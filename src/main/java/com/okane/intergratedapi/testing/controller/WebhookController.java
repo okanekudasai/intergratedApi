@@ -61,7 +61,7 @@ public class WebhookController {
      * 오후 4시가 되면 자동으로 작동하는 코드
      */
     @GetMapping("/confirmDaily")
-    @Scheduled(cron = "0 5 16 * * *")
+    @Scheduled(cron = "0 40 10 * * *")
     void confirmDaily() {
 
         String reqURL = "https://leetcode.com/graphql";

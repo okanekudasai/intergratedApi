@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -35,6 +36,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/webhook")
 @RequiredArgsConstructor
+@EnableScheduling
 public class WebhookController {
 
     ObjectMapper mapper = new ObjectMapper();
@@ -60,9 +62,10 @@ public class WebhookController {
     /**
      * 오후 4시가 되면 자동으로 작동하는 코드
      */
-    @GetMapping("/confirmDaily")
-    @Scheduled(cron = "0 50 10 * * *")
+//    @GetMapping("/confirmDaily")
+    @Scheduled(cron = "0 5 9 * * *")
     void confirmDaily() {
+        System.out.println("가동!");
 
         String reqURL = "https://leetcode.com/graphql";
         String body = "{\"query\":\"query questionOfToday {\\n\\tactiveDailyCodingChallengeQuestion {\\n\\t\\tdate\\n\\t\\tuserStatus\\n\\t\\tlink\\n\\t\\tquestion {\\n\\t\\t\\tacRate\\n\\t\\t\\tdifficulty\\n\\t\\t\\tfreqBar\\n\\t\\t\\tfrontendQuestionId: questionFrontendId\\n\\t\\t\\tisFavor\\n\\t\\t\\tpaidOnly: isPaidOnly\\n\\t\\t\\tstatus\\n\\t\\t\\ttitle\\n\\t\\t\\ttitleSlug\\n\\t\\t\\thasVideoSolution\\n\\t\\t\\thasSolution\\n\\t\\t\\ttopicTags {\\n\\t\\t\\t\\tname\\n\\t\\t\\t\\tid\\n\\t\\t\\t\\tslug\\n\\t\\t\\t}\\n\\t\\t}\\n\\t}\\n}\\n\",\"operationName\":\"questionOfToday\"}";

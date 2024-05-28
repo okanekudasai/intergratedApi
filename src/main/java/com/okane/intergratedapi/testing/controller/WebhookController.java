@@ -60,7 +60,7 @@ public class WebhookController {
     /**
      * 오후 4시가 되면 자동으로 작동하는 코드
      */
-//    @GetMapping("/confirmDaily")
+    @GetMapping("/confirmDaily")
     @Scheduled(cron = "0 5 16 * * *")
     void confirmDaily() {
 
@@ -193,12 +193,15 @@ public class WebhookController {
 
 //        LocalDate today = LocalDate.now();
 //        String formattedDate = today.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+//        link = "fefseifef";
+//        problem="fewfeff";
 //        System.out.println("오늘 날짜: " + formattedDate);
+
         String formattedDate = date;
 
         String reqURL = "https://api.notion.com/v1/pages";
-        String body = "{\"parent\":{\"type\":\"database_id\",\"database_id\":\"" + database_id + "\"},\"properties\":{\"링크\":{\"url\":\"" + link + "\"},\"날짜\":{\"date\":{\"start\":\"" + formattedDate + "\"}},\"문제\":{\"title\":[{\"text\":{\"content\":\"" + problem + "\",\"link\":null}}]},\"이동하\":{\"url\":\" \"},\"박아멘\":{\"url\":\" \"}}}";
-
+//        String body = "{\"parent\":{\"type\":\"database_id\",\"database_id\":\"" + database_id + "\"},\"properties\":{\"링크\":{\"url\":\"" + link + "\"},\"날짜\":{\"date\":{\"start\":\"" + formattedDate + "\"}},\"문제\":{\"title\":[{\"text\":{\"content\":\"" + problem + "\",\"link\":null}}]},\"이동하\":{\"url\":\" \"},\"박아멘\":{\"url\":\" \"}}}";
+        String body = "{\"parent\":{\"type\":\"database_id\",\"database_id\":\"" + database_id + "\"},\"properties\":{\"링크\":{\"url\":\"" + link + "\"},\"날짜\":{\"date\":{\"start\":\"" + formattedDate + "\"}},\"문제\":{\"title\":[{\"text\":{\"content\":\"" + problem + "\",\"link\":null}}]}}}";
         WebClient webClient = WebClient.builder()
                 .baseUrl(reqURL)
                 .defaultHeader("Authorization", "Bearer " + apiKey)

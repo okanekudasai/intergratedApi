@@ -248,9 +248,12 @@ public class WebhookController {
             String title = pageList.get(i).getAsJsonObject().get("properties").getAsJsonObject().get("문제").getAsJsonObject().get("title").getAsJsonArray().get(0).getAsJsonObject()
                     .get("text").getAsJsonObject().get("content").toString();
             String id = pageList.get(i).getAsJsonObject().get("id").toString();
-
-            if (title.equals("\"" + problem + "\"")) {
-                return id;
+            StringBuilder sb = new StringBuilder();
+            for (int c = 0; c < 5; c++) {
+                if (title.equals("\"" + sb + problem + "\"")) {
+                    return id;
+                }
+                sb.append("0");
             }
         }
         System.out.println("못찾음");

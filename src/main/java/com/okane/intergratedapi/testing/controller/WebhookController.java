@@ -250,7 +250,7 @@ public class WebhookController {
             String id = pageList.get(i).getAsJsonObject().get("id").toString();
             StringBuilder sb = new StringBuilder();
             for (int c = 0; c < 5; c++) {
-                if (title.equals("\"" + sb + problem + "\"")) {
+                if ((sb + title).equals("\"" + problem + "\"")) {
                     return id;
                 }
                 sb.append("0");

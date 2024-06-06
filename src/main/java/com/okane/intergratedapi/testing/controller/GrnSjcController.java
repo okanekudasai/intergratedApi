@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import java.text.SimpleDateFormat;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
@@ -32,7 +33,7 @@ public class GrnSjcController {
     String Notion_Version = "2022-06-28";
 
     @GetMapping("/add")
-    @Scheduled(cron = "30 9 * * 1-5")
+    @Scheduled(cron = "0 30 9 * * 1-5")
     void add_line() {
         String reqURL = "https://api.notion.com/v1/pages";
 
@@ -43,24 +44,48 @@ public class GrnSjcController {
         LocalDate td = LocalDate.now();
         long weeksBetween = ChronoUnit.WEEKS.between(referenceDate, td) + 1;
         String week_num = weeksBetween + "주차";
+        DayOfWeek dayOfWeek = td.getDayOfWeek();
+        if (dayOfWeek == DayOfWeek.FRIDAY) {
+            for (int i = 0; i < 2; i++) {
+                String body = "";
+                if (i == 0) body = "{\"parent\":{\"database_id\":\"" + daily_scrum_id + "\"},\"properties\":{\"이름\":{\"title\":[{\"text\":{\"content\":\"" + formattedDate + " 오전\"}}]},\"태그\":{\"multi_select\":[{\"name\":\"" + week_num + "\"}]}}}";
+                else body = "{\"parent\":{\"database_id\":\"" + daily_scrum_id + "\"},\"properties\":{\"이름\":{\"title\":[{\"text\":{\"content\":\"" + formattedDate + " 오후\"}}]},\"태그\":{\"multi_select\":[{\"name\":\"" + week_num + "\"}]}}}";
+                WebClient webClient = WebClient.builder()
+                        .baseUrl(reqURL)
+                        .defaultHeader("Authorization", "Bearer " + api_key)
+                        .defaultHeader("Content-Type", "application/json")
+                        .defaultHeader("Notion-Version", Notion_Version)
+                        .build();
+                String response = webClient.post()
+                        .bodyValue(body)
+                        .retrieve()
+                        .bodyToMono(String.class)
+                        .block();
+                JsonElement element = JsonParser.parseString(response);
+                String page_id = element.getAsJsonObject().get("id").getAsString();
 
-        String body = "{\"parent\":{\"database_id\":\"" + daily_scrum_id + "\"},\"properties\":{\"이름\":{\"title\":[{\"text\":{\"content\":\"" + formattedDate +"\"}}]},\"태그\":{\"multi_select\":[{\"name\":\"" + week_num + "\"}]}}}";
+                System.out.println(page_id);
+            }
+        } else {
 
-        WebClient webClient = WebClient.builder()
-                .baseUrl(reqURL)
-                .defaultHeader("Authorization", "Bearer " + api_key)
-                .defaultHeader("Content-Type", "application/json")
-                .defaultHeader("Notion-Version", Notion_Version)
-                .build();
-        String response = webClient.post()
-                .bodyValue(body)
-                .retrieve()
-                .bodyToMono(String.class)
-                .block();
+            String body = "{\"parent\":{\"database_id\":\"" + daily_scrum_id + "\"},\"properties\":{\"이름\":{\"title\":[{\"text\":{\"content\":\"" + formattedDate + "\"}}]},\"태그\":{\"multi_select\":[{\"name\":\"" + week_num + "\"}]}}}";
 
-        JsonElement element = JsonParser.parseString(response);
-        String page_id = element.getAsJsonObject().get("id").getAsString();
+            WebClient webClient = WebClient.builder()
+                    .baseUrl(reqURL)
+                    .defaultHeader("Authorization", "Bearer " + api_key)
+                    .defaultHeader("Content-Type", "application/json")
+                    .defaultHeader("Notion-Version", Notion_Version)
+                    .build();
+            String response = webClient.post()
+                    .bodyValue(body)
+                    .retrieve()
+                    .bodyToMono(String.class)
+                    .block();
 
-        System.out.println(page_id);
+            JsonElement element = JsonParser.parseString(response);
+            String page_id = element.getAsJsonObject().get("id").getAsString();
+
+            System.out.println(page_id);
+        }
     }
 }

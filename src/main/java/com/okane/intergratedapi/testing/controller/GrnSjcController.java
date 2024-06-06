@@ -35,13 +35,16 @@ public class GrnSjcController {
     @GetMapping("/add")
     @Scheduled(cron = "0 30 9 * * 1-5")
     void add_line() {
+        LocalDate td = LocalDate.now();
+        LocalDate overDate = LocalDate.of(2024, 12, 1);
+        if (td.isAfter(overDate)) return;
+
         String reqURL = "https://api.notion.com/v1/pages";
 
         Date today = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yy-MM-dd(E)", Locale.KOREAN);
         String formattedDate = dateFormat.format(today);
         LocalDate referenceDate = LocalDate.of(2024, 6, 3);
-        LocalDate td = LocalDate.now();
         long weeksBetween = ChronoUnit.WEEKS.between(referenceDate, td) + 1;
         String week_num = weeksBetween + "주차";
         DayOfWeek dayOfWeek = td.getDayOfWeek();

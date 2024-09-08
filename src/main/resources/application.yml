@@ -11,7 +11,7 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     show-sql: true
     open-in-view: false
 
@@ -26,3 +26,7 @@ notion:
 grnsjc:
   daily_scrum_id: 3f2754e093094b2487fe788d634aecaf
   api_key: secret_jGF6WY0cA4G6TC9vHKNizqdI8EBJ5cHXSdPhx509aMm
+
+checklist:
+  database_id: 94cea41cbf3446138ac5731385a57d74
+  api_key: secret_NMGEb8RkF9mb2Eyw7JVTaYAq5dAOxcMA6zlSVhTivvS

@@ -1,17 +1,11 @@
 package com.okane.intergratedapi.testing.controller;
 
-import com.okane.intergratedapi.testing.UserRepository;
+import com.okane.intergratedapi.testing.repository.UserRepository;
 import com.okane.intergratedapi.testing.dto.User;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
-import org.apache.commons.codec.binary.Hex;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.crypto.Mac;
-import javax.crypto.spec.SecretKeySpec;
 import java.util.List;
 
 @RestController
@@ -20,14 +14,6 @@ import java.util.List;
 public class TestController {
 
     final UserRepository userRepository;
-
-    @PostConstruct
-    void init() {
-        userRepository.save(User.builder().name("eeeee").email("gg@gg.cc").build());
-        userRepository.save(User.builder().name("aefsaef").email("gg@geeg.cc").build());
-        userRepository.save(User.builder().name("easfasae").email("gg@gggg.cc").build());
-        userRepository.save(User.builder().name("eesefseafee").email("ggww@gg.cc").build());
-    }
 
     @GetMapping("/hello")
     String getTest() {

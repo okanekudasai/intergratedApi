@@ -31,7 +31,7 @@ public class GrnSjcController {
     String api_key;
 
     String Notion_Version = "2022-06-28";
-
+/*
     @GetMapping("/add")
     @Scheduled(cron = "0 30 9 * * 1-5")
     void add_line() {
@@ -91,4 +91,6 @@ public class GrnSjcController {
             System.out.println(page_id);
         }
     }
+
+ */
 }

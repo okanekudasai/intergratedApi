@@ -59,7 +59,7 @@ public class CheckListController {
         JsonElement element = JsonParser.parseString(response);
         String page_id = element.getAsJsonObject().get("id").getAsString();
 
-        System.out.println(page_id);
+        System.out.println(page_id);//
     }
     @GetMapping("all")
     String getAllData() {

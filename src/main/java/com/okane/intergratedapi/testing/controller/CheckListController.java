@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,6 +26,7 @@ import java.util.Locale;
 @RequestMapping("/checklist")
 @RequiredArgsConstructor
 @EnableScheduling
+@CrossOrigin("*")
 public class CheckListController {
     @Value("${checklist.api_key}")
     String apiKey;

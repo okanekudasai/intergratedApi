@@ -26,9 +26,9 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
 
     // jpa사용을 위한 의존성 추가
-//    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-//    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
-//    runtimeOnly 'com.mysql:mysql-connector-j'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+    runtimeOnly 'com.mysql:mysql-connector-j'
 
     //웹훅
     implementation 'commons-codec:commons-codec:1.15'

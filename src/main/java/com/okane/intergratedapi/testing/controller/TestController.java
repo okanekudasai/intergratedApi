@@ -1,7 +1,5 @@
 package com.okane.intergratedapi.testing.controller;
 
-import com.okane.intergratedapi.testing.repository.UserRepository;
-import com.okane.intergratedapi.testing.dto.User;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -13,29 +11,29 @@ import java.util.List;
 @RequiredArgsConstructor
 public class TestController {
 
-    final UserRepository userRepository;
+//    final UserRepository userRepository;
 
     @GetMapping("/hello")
     String getTest() {
         return "hello intergrated!!!!";
     }
 
-    @PostMapping("/saveDummy")
-    String saveDummy(@RequestParam("name") String name, @RequestParam("email") String email) {
+//    @PostMapping("/saveDummy")
+//    String saveDummy(@RequestParam("name") String name, @RequestParam("email") String email) {
+//
+//        userRepository.save(User.builder().name(name).email(email).build());
+//        return "success";
+//    }
 
-        userRepository.save(User.builder().name(name).email(email).build());
-        return "success";
-    }
-
-    @GetMapping("/user")
-    String getUser() {
-        List<User> list = userRepository.findAll();
-        StringBuilder sb = new StringBuilder();
-        for (User u : list) {
-            sb.append(u.getName() + " " + u.getEmail() + "\n");
-        }
-        return sb.toString();
-    }
+//    @GetMapping("/user")
+//    String getUser() {
+//        List<User> list = userRepository.findAll();
+//        StringBuilder sb = new StringBuilder();
+//        for (User u : list) {
+//            sb.append(u.getName() + " " + u.getEmail() + "\n");
+//        }
+//        return sb.toString();
+//    }
 
     @GetMapping("/true")
     boolean getTrue() throws InterruptedException {

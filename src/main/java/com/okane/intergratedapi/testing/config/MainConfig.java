@@ -15,7 +15,7 @@ public class MainConfig implements WebMvcConfigurer {
 
         // 모든 경로에 대해 모든 HTTP 메서드에 대한 CORS를 허용
         registry.addMapping("/**")
-                .allowedOrigins("*")
+                .allowedOrigins("https://okane-on-cliff.tistory.com")
                 .allowedMethods("GET", "POST", "PUT", "DELETE")
                 .allowCredentials(true)
                 .allowedHeaders("*");

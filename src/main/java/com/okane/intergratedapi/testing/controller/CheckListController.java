@@ -26,7 +26,6 @@ import java.util.Locale;
 @RequestMapping("/checklist")
 @RequiredArgsConstructor
 @EnableScheduling
-@CrossOrigin("*")
 public class CheckListController {
     @Value("${checklist.api_key}")
     String apiKey;
